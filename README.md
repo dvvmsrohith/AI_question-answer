@@ -71,7 +71,7 @@ Saved in SQLite Database
         ↓
 Displayed to the User
 
-##📂Projects Structure
+📂 Project Structure
 AI-Question-Answering/
 │
 ├── app.py
