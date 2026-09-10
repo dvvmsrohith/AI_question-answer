@@ -70,3 +70,18 @@ Answer + Confidence Score
 Saved in SQLite Database
         ↓
 Displayed to the User
+
+##📂Projects Structure
+AI-Question-Answering/
+│
+├── app.py
+├── qa_history.db
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   ├── index.html
+│   └── history.html
+│
+└── static/
+    └── style.css
