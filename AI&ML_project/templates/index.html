@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Question Answering System</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>🤖 AI Question Answering System</h1>
+
+        <p class="subtitle">
+            Enter a paragraph and ask a question.
+            The AI will find the answer from the paragraph.
+        </p>
+
+        <form method="POST">
+
+            <!-- Paragraph -->
+
+            <label for="paragraph">
+                📄 Enter Paragraph
+            </label>
+
+            <textarea
+                id="paragraph"
+                name="paragraph"
+                placeholder="Enter your paragraph here..."
+                required>{{ paragraph }}</textarea>
+
+
+            <!-- Question -->
+
+            <label for="question">
+                ❓ Enter Your Question
+            </label>
+
+            <input
+                type="text"
+                id="question"
+                name="question"
+                placeholder="Example: What is Artificial Intelligence?"
+                value="{{ question }}"
+                required>
+
+
+            <!-- Button -->
+
+            <button type="submit">
+                🔍 Get Answer
+            </button>
+            <a href="{{ url_for('history') }}" class="history-button">
+                📚 Question History
+            </a>
+        </form>
+
+
+        {% if answer %}
+
+        <div class="result">
+
+            <h2>💡 Answer</h2>
+
+            <div class="answer">
+                {{ answer }}
+            </div>
+
+
+            <h3>📊 Confidence Score</h3>
+
+            <div class="confidence">
+
+                <div class="progress">
+
+                    <div class="progress-bar">
+
+                    </div>
+
+                </div>
+
+                <span>
+                    {{ confidence }}%
+                </span>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+
+</html>

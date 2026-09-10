@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Question History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>📚 Question History</h1>
+
+
+    <a href="/" class="history-button">
+        ➕ Ask New Question
+    </a>
+
+
+    {% if question_data %}
+
+        <!-- Current Question -->
+
+        <div class="history-item">
+
+            <h3>❓ Question</h3>
+
+            <p>
+                {{ question_data["question"] }}
+            </p>
+
+
+            <h3>📄 Paragraph</h3>
+
+            <p>
+                {{ question_data["paragraph"] }}
+            </p>
+
+
+            <h3>💡 Answer</h3>
+
+            <p class="answer-text">
+                {{ question_data["answer"] }}
+            </p>
+
+
+            <h3>📊 Confidence</h3>
+
+            <p>
+                {{ question_data["confidence"] }}%
+            </p>
+
+
+            <h3>🕒 Date & Time</h3>
+
+            <p>
+                {{ question_data["date_time"] }}
+            </p>
+
+        </div>
+
+
+        <!-- Previous / Next -->
+
+        <div class="navigation">
+
+            {% if previous %}
+
+                <a href="{{ url_for('view_question', question_id=previous['id']) }}"
+                   class="nav-button">
+
+                    ← Previous
+
+                </a>
+
+            {% else %}
+
+                <button class="nav-button disabled"
+                        disabled>
+
+                    ← Previous
+
+                </button>
+
+            {% endif %}
+
+
+            {% if next_question %}
+
+                <a href="{{ url_for('view_question', question_id=next_question['id']) }}"
+                   class="nav-button">
+
+                    Next →
+
+                </a>
+
+            {% else %}
+
+                <button class="nav-button disabled"
+                        disabled>
+
+                    Next →
+
+                </button>
+
+            {% endif %}
+
+        </div>
+
+
+    {% else %}
+
+
+        <!-- All Questions -->
+
+        {% if history %}
+
+            {% for item in history %}
+
+                <div class="history-item">
+
+                    <h3>
+                        ❓ {{ item["question"] }}
+                    </h3>
+
+                    <p>
+                        {{ item["answer"] }}
+                    </p>
+
+                    <p>
+                        <strong>
+                            Confidence:
+                        </strong>
+
+                        {{ item["confidence"] }}%
+                    </p>
+
+                    <a href="{{ url_for('view_question', question_id=item['id']) }}"
+                       class="view-button">
+
+                        View Question
+
+                    </a>
+
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p class="no-history">
+                No questions have been saved yet.
+            </p>
+
+        {% endif %}
+
+    {% endif %}
+
+</div>
+
+</body>
+
+</html>
